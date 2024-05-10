@@ -7,7 +7,7 @@ import model.Aluno;
 public class DAOAluno implements InterfaceAluno {
 
 	@Override
-	public List<Aluno> getAlunos() {
+	public List<Aluno> fetchAll() {
 		// TODO Auto-generated method stub
 		return null;
 	}
