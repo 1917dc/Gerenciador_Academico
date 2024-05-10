@@ -7,4 +7,5 @@ public class Disciplina {
 	private Professor doscente;
 	private List<Aluno> discentes;
 	private List<String> horarios;
+    private String sala;
 }
