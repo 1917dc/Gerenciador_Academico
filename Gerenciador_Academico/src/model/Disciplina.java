@@ -7,8 +7,6 @@ public class Disciplina {
 	private Professor doscente;
 	private List<Aluno> discentes;
 	private List<String> horarios;
-<<<<<<< Updated upstream
-=======
     private String sala;
     
 	public Disciplina(String nome, Professor doscente, List<Aluno> discentes, List<String> horarios, String sala) {
@@ -59,5 +57,4 @@ public class Disciplina {
 	public void setSala(String sala) {
 		this.sala = sala;
 	}
->>>>>>> Stashed changes
 }
