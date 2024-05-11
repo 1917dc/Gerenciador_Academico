@@ -2,16 +2,23 @@ package controller;
 
 import java.util.List;
 
+import model.Aluno;
 import model.Disciplina;
+import model.DisciplinaParaLista;
+import model.Professor;
 
 public class DAODisciplina implements InterfaceDisciplinas {
-
 	@Override
 	public List<Disciplina> fetchAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return DisciplinaParaLista.getAll();
 	}
 
+	@Override
+	public void save(String nome, Professor doscente, List<Aluno> discentes, List<String> horarios, String sala) {
+		DisciplinaParaLista.save(new Disciplina(nome, doscente, discentes, horarios, sala));
+	}
+	
+	//mesma coisa, olhe a parte de aluno
 	@Override
 	public void readFile(List<Disciplina> disciplinas) {
 		// TODO Auto-generated method stub
@@ -23,11 +30,4 @@ public class DAODisciplina implements InterfaceDisciplinas {
 		// TODO Auto-generated method stub
 		
 	}
-
-	@Override
-	public void save(Disciplina disciplina) {
-		// TODO Auto-generated method stub
-		
-	}
-	
 }

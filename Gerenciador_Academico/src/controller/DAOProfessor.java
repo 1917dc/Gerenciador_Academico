@@ -3,21 +3,20 @@ package controller;
 import java.util.List;
 
 import model.Professor;
+import model.ProfessorParaLista;
 
-public class DAOProfessor implements InterfaceProfessor{
-
-	@Override
+public abstract class DAOProfessor implements InterfaceProfessor{
 	public List<Professor> fetchAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return ProfessorParaLista.getAll();
 	}
 
 	@Override
-	public void save(Professor professor) {
-		// TODO Auto-generated method stub
-		
+	public void save(String nome, String cpf, String senha) {
+		ProfessorParaLista.save(new Professor(nome, cpf, senha));
 	}
+	
 
+	//mesma coisa aq
 	@Override
 	public void readFile(List<Professor> professores) {
 		// TODO Auto-generated method stub
