@@ -1,17 +1,16 @@
 package controller;
 
 import model.Aluno;
-import model.AlunoParaLista;
 import model.Pessoa;
 import model.Professor;
-import model.ProfessorParaLista;
+import model.ReadFile;
 
 public class ChecarLogin {
 	
 	Pessoa pessoaLogada = null;
 	
 	public boolean logar(String cpf, String senha) {
-		for (Aluno aluno : AlunoParaLista.getAll()) {
+		for (Aluno aluno : ReadFile.getAllAlunos()) {
 			if (aluno.getCpf().equals(cpf) && aluno.getSenha().equals(senha)) {
 				
 				pessoaLogada = aluno;
@@ -20,7 +19,7 @@ public class ChecarLogin {
 			}
 		}
 		
-		for (Professor professor : ProfessorParaLista.getAll()) {
+		for (Professor professor : ReadFile.getAllProfessores()) {
 			if (professor.getCpf().equals(cpf) && professor.getSenha().equals(senha)) {
 				
 				pessoaLogada = professor;
@@ -30,5 +29,13 @@ public class ChecarLogin {
 		}
 		
 		return false;
+	}
+
+	public Pessoa getPessoaLogada() {
+		return pessoaLogada;
+	}
+
+	public boolean checarTipo() {
+		return pessoaLogada instanceof Aluno;
 	}
 }

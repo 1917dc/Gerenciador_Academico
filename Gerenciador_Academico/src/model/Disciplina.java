@@ -4,16 +4,15 @@ import java.util.List;
 
 public class Disciplina {
 	private String nome;
-	private Professor doscente;
+	private String doscente;
 	private List<Aluno> discentes;
-	private List<String> horarios;
+	private String horarios;
     private String sala;
     
-	public Disciplina(String nome, Professor doscente, List<Aluno> discentes, List<String> horarios, String sala) {
+	public Disciplina(String nome, String doscente,String horarios, String sala) {
 		super();
 		this.nome = nome;
 		this.doscente = doscente;
-		this.discentes = discentes;
 		this.horarios = horarios;
 		this.sala = sala;
 	}
@@ -26,11 +25,9 @@ public class Disciplina {
 		this.nome = nome;
 	}
 
-	public Professor getDoscente() {
-		return doscente;
-	}
+	public String getDoscente() { return doscente; }
 
-	public void setDoscente(Professor doscente) {
+	public void setDoscente(String doscente) {
 		this.doscente = doscente;
 	}
 
@@ -42,11 +39,11 @@ public class Disciplina {
 		this.discentes = discentes;
 	}
 
-	public List<String> getHorarios() {
+	public String getHorarios() {
 		return horarios;
 	}
 
-	public void setHorarios(List<String> horarios) {
+	public void setHorarios(String horarios) {
 		this.horarios = horarios;
 	}
 
@@ -56,5 +53,16 @@ public class Disciplina {
 
 	public void setSala(String sala) {
 		this.sala = sala;
+	}
+
+	@Override
+	public String toString() {
+		return "Disciplina{" +
+				"nome='" + nome + '\'' +
+				", doscente=" + doscente +
+				", discentes=" + discentes +
+				", horarios='" + horarios + '\'' +
+				", sala='" + sala + '\'' +
+				'}';
 	}
 }

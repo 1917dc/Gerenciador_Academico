@@ -4,6 +4,6 @@
 /**
  * 
  */
-module teste {
+module Gerenciador_Academico {
 	requires java.desktop;
 }

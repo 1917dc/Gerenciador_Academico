@@ -31,12 +31,16 @@ public class SwingInterface {
         botaoLogin.addActionListener(e -> {
 			if (checarLogin.logar(cpf.getText(), senha.getText())) {
 				frameLogin.dispose();
+				if (checarLogin.checarTipo()) {
+                    ConstrutorDeComponentes.criarFrameLogadoAluno(checarLogin.getPessoaLogada().getNome());
+                } else {
+                	ConstrutorDeComponentes.criarFrameLogadoProfessor(checarLogin.getPessoaLogada().getNome());
+                }
 			}
         });
         painelLoginForm.add(botaoLogin, ConstrutorDeComponentes.posicionar(0, 2));
         
         JPanel panelCadastroForm = new JPanel(new GridBagLayout());
-        
         
         JTabbedPane tabby = new JTabbedPane();
         tabby.addTab("Login", painelLoginForm);

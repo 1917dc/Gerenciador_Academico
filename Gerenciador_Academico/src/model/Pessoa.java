@@ -38,4 +38,8 @@ public abstract class Pessoa implements Serializable {
 		this.senha = senha;
 	}
 
+	@Override
+	public String toString() {
+		return "Pessoa [senha=" + senha + ", nome=" + nome + ", cpf=" + cpf + "]";
+	}
 }
