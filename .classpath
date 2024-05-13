@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" path="Gerenciador_Academico/src"/>
+	<classpathentry kind="lib" path="D:/DownloadsHD/flatlaf-3.4.1.jar" sourcepath="D:/DownloadsHD/flatlaf-3.4.1-sources.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/D:/DownloadsHD/flatlaf-3.4.1-javadoc.jar!/"/>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
