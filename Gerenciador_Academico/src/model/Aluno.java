@@ -38,8 +38,12 @@ public class Aluno extends Pessoa{
 		return "Aluno [curso=" + curso + ", notas=" + notas + "]";
 	}
 
+	public void setNota(String nomeDisciplina, Double nota) {
+		this.notas.remove(nomeDisciplina);
+		this.notas.put(nomeDisciplina, nota);
+	}
+
 	public void setNotas(HashMap<String, Double> notas) {
-        this.notas = notas;
-    
+        this.notas = notas;		
 	}
 }

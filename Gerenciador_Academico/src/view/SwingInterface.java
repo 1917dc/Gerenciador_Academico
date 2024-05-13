@@ -1,12 +1,16 @@
 package view;
 
 import java.awt.GridBagLayout;
+import java.awt.Toolkit;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
+
+import com.formdev.flatlaf.FlatDarculaLaf;
 
 import controller.ChecarLogin;
 
@@ -18,7 +22,11 @@ public class SwingInterface {
 	}
 
 	public void iniciar() {
+		FlatDarculaLaf.setup();
+		ImageIcon img = new ImageIcon("D:\\DownloadsHD\\download.png");
+		
         JFrame frameLogin = new JFrame("Login e cadastro");		
+        frameLogin.setIconImage(img.getImage());
         frameLogin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frameLogin.setSize(400, 300);
         frameLogin.setLocationRelativeTo(null);

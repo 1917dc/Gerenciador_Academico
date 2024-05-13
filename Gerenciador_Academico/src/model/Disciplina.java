@@ -5,14 +5,15 @@ import java.util.List;
 public class Disciplina {
 	private String nome;
 	private String doscente;
-	private List<Aluno> discentes;
+	private List<String> discentes;
 	private String horarios;
     private String sala;
     
-	public Disciplina(String nome, String doscente,String horarios, String sala) {
+	public Disciplina(String nome, String doscente,String horarios, String sala, List<String> discentes) {
 		super();
 		this.nome = nome;
 		this.doscente = doscente;
+		this.discentes = discentes;
 		this.horarios = horarios;
 		this.sala = sala;
 	}
@@ -31,11 +32,11 @@ public class Disciplina {
 		this.doscente = doscente;
 	}
 
-	public List<Aluno> getDiscentes() {
+	public List<String> getDiscentes() {
 		return discentes;
 	}
 
-	public void setDiscentes(List<Aluno> discentes) {
+	public void setDiscentes(List<String> discentes) {
 		this.discentes = discentes;
 	}
 
@@ -65,4 +66,8 @@ public class Disciplina {
 				", sala='" + sala + '\'' +
 				'}';
 	}
+	
+	public void addDiscente(String discente) {
+		this.discentes.add(discente);
+    }
 }

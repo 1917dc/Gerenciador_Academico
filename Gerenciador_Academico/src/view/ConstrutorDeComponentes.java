@@ -1,19 +1,28 @@
 package view;
 
+import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
+
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.util.List;
 
-import javax.swing.*;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 import controller.DisciplinasDAO;
-import model.Disciplina;
-
-import static javax.swing.JFrame.*;
 
 public abstract class ConstrutorDeComponentes {
 	static DisciplinasDAO disciplinasDAO = new DisciplinasDAO();
+	
+	static ImageIcon img = new ImageIcon("D:\\DownloadsHD\\download.png");
 	
 	//funcao para criar textFields, ela retorna apenas o text field. Por padrão 
 	//o text field é acompanhado por um label, o posicionamento do label esta 
@@ -39,6 +48,7 @@ public abstract class ConstrutorDeComponentes {
 	public static JFrame criarFrameLogadoAluno(String pessoaLogadaNome) {
 		JFrame frameLogadoAluno = new JFrame("Bem-vindo " + pessoaLogadaNome);
 		frameLogadoAluno.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		frameLogadoAluno.setIconImage(img.getImage());
 		frameLogadoAluno.setSize(800, 600);
 		frameLogadoAluno.setLocationRelativeTo(null);
 		
@@ -55,8 +65,13 @@ public abstract class ConstrutorDeComponentes {
 		
 		JPanel painelBotoes = new JPanel(new GridBagLayout());
 		JButton botaoInscricao = new JButton("Inscrever-se em disciplinas");
-		JButton botaoHistorico = new JButton("Ver histórico");
+		//JButton botaoHistorico = new JButton("Ver histórico");
 		JButton botaoSair = new JButton("Sair");
+		
+		botaoInscricao.addActionListener(e -> {
+			frameLogadoAluno.dispose();
+			criarFrameInscricao(pessoaLogadaNome);
+		});
 		
 		botaoSair.addActionListener(e -> {
 			frameLogadoAluno.dispose();
@@ -64,7 +79,7 @@ public abstract class ConstrutorDeComponentes {
 		});
 		
 		painelBotoes.add(botaoInscricao, posicionar(0, 2));
-		painelBotoes.add(botaoHistorico, posicionar(1, 2));
+		//painelBotoes.add(botaoHistorico, posicionar(1, 2));
 		painelBotoes.add(botaoSair, posicionar(2, 2));
 		
 		painelLogadoAluno.add(painelBotoes, posicionar(0, 2));
@@ -76,8 +91,9 @@ public abstract class ConstrutorDeComponentes {
 	}
 
 	public static JFrame criarFrameLogadoProfessor(String pessoaLogadaNome) {
-		JFrame frameLogadoProfessor = new JFrame("Bem-vindo " + pessoaLogadaNome);
+		JFrame frameLogadoProfessor = new JFrame("Bem-vindo(a) " + pessoaLogadaNome);
 		frameLogadoProfessor.setLayout(new GridBagLayout());
+		frameLogadoProfessor.setIconImage(img.getImage());
 		frameLogadoProfessor.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		frameLogadoProfessor.setSize(800, 600);
 		frameLogadoProfessor.setLocationRelativeTo(null);
@@ -108,27 +124,29 @@ public abstract class ConstrutorDeComponentes {
 
 	private static JFrame criarFrameRegistrarNotas(String pessoaLogadaNome){
 		String pessoaLogadaCpf = disciplinasDAO.getCpfProfessor(pessoaLogadaNome);
-		List<Disciplina> disciplinas = disciplinasDAO.getDisciplinasProfessor(pessoaLogadaCpf);
+		String[] disciplinas = disciplinasDAO.getDisciplinasProfessor(pessoaLogadaCpf);
 
 		JFrame frameRegistrarNotas = new JFrame("Registrar notas");
-		frameRegistrarNotas.setLocationRelativeTo(null);
 		frameRegistrarNotas.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		frameRegistrarNotas.setIconImage(img.getImage());
 		frameRegistrarNotas.setSize(800, 600);
+		frameRegistrarNotas.setLocationRelativeTo(null);
 
 		JPanel painelRegistrarNotas = new JPanel(new GridBagLayout());
 		JLabel labelTabelaMaterias = new JLabel("Selecione uma disciplina: ");
 		JButton botaoRegistrar = new JButton("Registrar");
+		JButton botaoSair = new JButton("Sair");
+		botaoSair.addActionListener(e -> {
+			frameRegistrarNotas.dispose();
+			criarFrameLogadoProfessor(pessoaLogadaNome);
+		});
 
-		String[] disciplinasNomes = new String[disciplinas.size()];
-		for(Disciplina disciplina : disciplinas){
-			disciplinasNomes[disciplinas.indexOf(disciplina)] = disciplina.getNome();
-		}
-
-		JComboBox<String> comboBoxDisciplinas = new JComboBox<String>(disciplinas.stream().map(Disciplina::getNome).toArray(String[]::new));
+		JComboBox<String> comboBoxDisciplinas = new JComboBox<String>(disciplinas);
 
 		painelRegistrarNotas.add(labelTabelaMaterias, posicionar(0, 0));
 		painelRegistrarNotas.add(comboBoxDisciplinas, posicionar(0, 1));
 		painelRegistrarNotas.add(botaoRegistrar, posicionar(0, 2));
+		painelRegistrarNotas.add(botaoSair, posicionar(0, 3));
 
 		botaoRegistrar.addActionListener(e -> {
 			frameRegistrarNotas.dispose();
@@ -143,6 +161,7 @@ public abstract class ConstrutorDeComponentes {
 	private static JFrame criarFrameCronograma(String pessoaLogadaNome) {
 		JFrame frameCronograma = new JFrame("Cronograma");
 		frameCronograma.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		frameCronograma.setIconImage(img.getImage());
 		frameCronograma.setSize(800, 600);
 		frameCronograma.setLocationRelativeTo(null);
 
@@ -171,6 +190,7 @@ public abstract class ConstrutorDeComponentes {
 	public static JFrame frameRegistrarNotas(JComboBox<String> comboBoxDisciplinas, String pessoaLogadaNome){
 		String disciplinaSelecionada = (String) comboBoxDisciplinas.getSelectedItem();
 		JFrame frameRegistrarNotasDisciplina = new JFrame("Registrar notas de " + disciplinaSelecionada);
+		frameRegistrarNotasDisciplina.setIconImage(img.getImage());
 		frameRegistrarNotasDisciplina.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		frameRegistrarNotasDisciplina.setSize(800, 600);
 		frameRegistrarNotasDisciplina.setLocationRelativeTo(null);
@@ -191,7 +211,7 @@ public abstract class ConstrutorDeComponentes {
 			criarFrameLogadoProfessor(pessoaLogadaNome);
 		});
 		botaoEditar.addActionListener(e -> {
-			criarFrameEditarNota(tabelaMaterias.getSelectedRow(), dados);
+			criarFrameEditarNota(tabelaMaterias.getSelectedRow(), dados, disciplinaSelecionada, tabelaMaterias, pessoaLogadaNome);
 		});
 
 		painelRegistrarNotasDisciplina.add(labelTabelaAlunos, posicionar(0, 0));
@@ -205,8 +225,9 @@ public abstract class ConstrutorDeComponentes {
 		return frameRegistrarNotasDisciplina;
 	}
 
-	private static JFrame criarFrameEditarNota(int selectedRow, Object[][] dados) {
+	private static JFrame criarFrameEditarNota(int selectedRow, Object[][] dados, String disciplinaSelecionada, JTable tabelaMaterias, String pessoaLogadaNome) {
 		JFrame frameEditarNota = new JFrame("Editar nota");
+		frameEditarNota.setIconImage(img.getImage());
 		frameEditarNota.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		frameEditarNota.setSize(800, 600);
 		frameEditarNota.setLocationRelativeTo(null);
@@ -224,12 +245,52 @@ public abstract class ConstrutorDeComponentes {
 
 		botaoSalvar.addActionListener(e -> {
 			frameEditarNota.dispose();
-			DisciplinasDAO.save(dados[selectedRow][2].toString());
+			DisciplinasDAO.save(dados[selectedRow][2].toString(), disciplinaSelecionada, Double.valueOf(textFieldNota.getText()));
+			tabelaMaterias.setModel(new DefaultTableModel(disciplinasDAO.getDisciplinasParaTabelaProfessorNotas(pessoaLogadaNome, disciplinaSelecionada), new String[]{"Aluno", "Nota", "CPF"}));
 		});
 
 		frameEditarNota.add(painelEditarNota);
 		frameEditarNota.setVisible(true);
 		return frameEditarNota;
 	}
-
+	
+	public static void criarFrameInscricao(String pessoaLogadaNome) {
+		JFrame frameInscricao = new JFrame("Inscrição em disciplinas");
+		frameInscricao.setIconImage(img.getImage());
+		frameInscricao.setLayout(new GridBagLayout());
+		frameInscricao.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		frameInscricao.setSize(800, 600);
+		frameInscricao.setLocationRelativeTo(null);
+		
+		JPanel painelInscricao = new JPanel(new GridBagLayout());
+		JLabel labelTabelaMaterias = new JLabel("Disciplinas disponíveis: ");
+		Object[][] dados = disciplinasDAO.getDisciplinasParaTabelaInscricao(pessoaLogadaNome);
+		String[] colunas = {"Disciplinas", "Professor", "Horário"};
+		JTable tabelaMaterias = new JTable(dados, colunas);
+		JScrollPane scrollPane = new JScrollPane(tabelaMaterias);
+		
+		JButton botaoInscricao = new JButton("Inscrever-se");
+		JButton botaoSair = new JButton("Sair");
+		
+		botaoInscricao.addActionListener(e -> {
+			frameInscricao.dispose();
+			disciplinasDAO.inscreverAluno(pessoaLogadaNome,
+					(String) tabelaMaterias.getValueAt(tabelaMaterias.getSelectedRow(), 0));
+			criarFrameLogadoAluno(pessoaLogadaNome);
+		});
+		
+		botaoSair.addActionListener(e -> {
+			frameInscricao.dispose();
+			criarFrameLogadoAluno(pessoaLogadaNome);
+		});
+		
+		painelInscricao.add(labelTabelaMaterias, posicionar(0, 0));
+		painelInscricao.add(scrollPane, posicionar(0, 1));
+		painelInscricao.add(botaoInscricao, posicionar(0, 2));
+		painelInscricao.add(botaoSair, posicionar(1, 2));
+		
+		frameInscricao.add(painelInscricao);
+		
+		frameInscricao.setVisible(true);
+	}
 }

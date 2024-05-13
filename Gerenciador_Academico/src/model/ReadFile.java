@@ -11,14 +11,14 @@ import java.util.stream.Stream;
 
 public class ReadFile {
 	// leo
-	//static String pathAlunos = "/Users/leozi/git/branch_leo/Gerenciador_Academico/Gerenciador_Academico/src/alunos.txt";
-	//static String pathProfessores = "/Users/leozi/git/branch_leo/Gerenciador_Academico/Gerenciador_Academico/src/professores.txt";
-	//static String pathDisciplinas = "/Users/leozi/git/branch_leo/Gerenciador_Academico/Gerenciador_Academico/src/disciplinas.txt";
+	static String pathAlunos = "/Users/leozi/git/CodeTogether/Gerenciador_Academico/Gerenciador_Academico/src/alunos.txt";
+	static String pathProfessores = "/Users/leozi/git/CodeTogether/Gerenciador_Academico/Gerenciador_Academico/src/professores.txt";
+	static String pathDisciplinas = "/Users/leozi/git/CodeTogether/Gerenciador_Academico/Gerenciador_Academico/src/disciplinas.txt";
 
 	// luiz
-	 static String pathAlunos = "/home/lua/Documents/GitHub/Gerenciador_Academico/Gerenciador_Academico/src/alunos.txt";
-	 static String pathProfessores = "/home/lua/Documents/GitHub/Gerenciador_Academico/Gerenciador_Academico/src/professores.txt";
-	 static String pathDisciplinas = "/home/lua/Documents/GitHub/Gerenciador_Academico/Gerenciador_Academico/src/disciplinas.txt";
+	//static String pathAlunos = "/home/lua/Documents/GitHub/Gerenciador_Academico/Gerenciador_Academico/src/alunos.txt";
+	//static String pathProfessores = "/home/lua/Documents/GitHub/Gerenciador_Academico/Gerenciador_Academico/src/professores.txt";
+	//static String pathDisciplinas = "/home/lua/Documents/GitHub/Gerenciador_Academico/Gerenciador_Academico/src/disciplinas.txt";
 
 	// alunos
 	public static List<Aluno> getAllAlunos() {
@@ -33,17 +33,20 @@ public class ReadFile {
 
 		for (String aluno : linesList) {
 			String[] alunoSplit = aluno.split("-")[0].split(",");
-			
-			String[] notasSplit = aluno.split("-")[1].split(",");
+			HashMap<String, Double> notas = new HashMap<String, Double>();
 			Aluno a = new Aluno(alunoSplit[0], alunoSplit[1], alunoSplit[2], alunoSplit[3]);
 			
-			HashMap<String, Double> notas = new HashMap<String, Double>();
-			for (int i = 0; i < notasSplit.length; i++) {
-				notas.put(notasSplit[i].split("=")[0], Double.parseDouble(notasSplit[i].split("=")[1]));
-				i++;
+			if (aluno.split("-").length > 1) {
+				String[] notasSplit = aluno.split("-")[1].split(",");
+				
+				for (int i = 0; i < notasSplit.length; i++) {
+					notas.put(notasSplit[i].split("=")[0], Double.parseDouble(notasSplit[i].split("=")[1]));
+				}
+				
+				a.setNotas(notas);
 			}
+			
 
-			a.setNotas(notas);
 			
 			alunosList.add(a);
 		}
@@ -63,14 +66,21 @@ public class ReadFile {
 		}
 
 		for (String disciplina : linesList) {
-			String[] disciplinaSplit = disciplina.split(",");
+			String discentesSplitInfo = disciplina.split("-")[0];
+			String disciplinaSplitDiscentes = disciplina.split("-")[1];
+			String[] discentesSplitInfoVirgula = discentesSplitInfo.split(",");
+			List<String> discentes = new ArrayList<>();
+			for (String discente : disciplinaSplitDiscentes.split(",")) {
+				discentes.add(discente);
+			}
 
 			for (Professor professor : getAllProfessores()) {
-				if (professor.getCpf().equals(disciplinaSplit[1])) {
-					Disciplina a = new Disciplina(disciplinaSplit[0], professor.getCpf(), disciplinaSplit[2], disciplinaSplit[3]);
+				if (professor.getCpf().equals(discentesSplitInfoVirgula[1])) {
+					Disciplina a = new Disciplina(discentesSplitInfoVirgula[0], professor.getCpf(), discentesSplitInfoVirgula[2], discentesSplitInfoVirgula[3], discentes);
 					disciplinasList.add(a);
 				}
 			}
+			
 		}
 
 		return disciplinasList;
