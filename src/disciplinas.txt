@@ -1,0 +1,10 @@
+Matemática,12345678910,Segunda 08:00,A101-Ana,Sérgio,Marcos
+História,98765432110,Segunda 10:00,B202-Ana,Sérgio,Lucas,Pedro
+Física,13579246810,Segunda 14:00,C303-Ana,Carlos,Sophia
+Biologia,24681357910,Terça 08:00,D404-Sérgio,Lucas,Juliana,João,Gabriel
+Artes,36985274110,Terça 10:00,E505-Lucas,Beatriz,Amanda,Luana
+Geografia,57924681310,Terça 14:00,F606-Carlos,Maria,Laura,João,Gabriel,Luana,Ana
+Química,65432198710,Quarta 08:00,G707-Carlos,Maria,Juliana,Marcos,Pedro,Beatriz,Luana
+Inglês,46813579210,Quarta 10:00,H808-Maria,Laura,Sophia,Pedro,Amanda,Luana
+Literatura,74185296310,Quarta 14:00,I909-Lucas,Juliana,Laura,Beatriz,Amanda,Ana
+Educação Física,85296374110,Quinta 08:00,J1010-Juliana
