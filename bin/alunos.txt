@@ -8,8 +8,8 @@ Marcos,77788899900,marcos901,Engenharia-Matemática=8.0,Física=7.5,Biologia=6.0
 Laura,88899900011,laura234,Arquitetura-Inglês=6.5,Geografia=7.2,Literatura=8.0
 Beatriz,99900011122,beatriz567,Engenharia-Artes=8.2,História=6.8,Química=7.5
 João,00011122233,joao890,Economia-Matemática=6.8,Geografia=7.0,Biologia=8.5
-Pedro,11122233344,pedro123,Arquitetura-Inglês=8.0,Geografia=6.0,História=6.0,Química=7.5
-Amanda,22233344455,amanda456,Economia-Artes=6.2,Biologia=7.0,Literatura=8.5
-Sophia,33344455566,sophia789,Engenharia-Inglês=6.8,História=7.0,Física=8.5
-Gabriel,44455566677,gabriel012,Arquitetura-Matemática=7.2,Geografia=6.5,Biologia=8.0
-Luana,55566677788,luana345,Economia-Inglês=7.5,Geografia=5.0,Artes=6.8,Química=8.0
+Pedro,01122233344,pedro123,Arquitetura-Inglês=8.0,Geografia=6.0,História=6.0,Química=7.5
+Amanda,02233344455,amanda456,Economia-Artes=6.2,Biologia=7.0,Literatura=8.5
+Sophia,03344455566,sophia789,Engenharia-Inglês=6.8,História=7.0,Física=8.5
+Gabriel,04455566677,gabriel012,Arquitetura-Matemática=7.2,Geografia=6.5,Biologia=8.0
+Luana,05566677788,luana345,Economia-Inglês=7.5,Geografia=5.0,Artes=6.8,Química=8.0

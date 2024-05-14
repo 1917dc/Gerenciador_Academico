@@ -14,11 +14,13 @@ public class ReadFile {
 //	static String pathAlunos = "/Users/leozi/git/CodeTogether/Gerenciador_Academico/Gerenciador_Academico/src/alunos.txt";
 //	static String pathProfessores = "/Users/leozi/git/CodeTogether/Gerenciador_Academico/Gerenciador_Academico/src/professores.txt";
 //	static String pathDisciplinas = "/Users/leozi/git/CodeTogether/Gerenciador_Academico/Gerenciador_Academico/src/disciplinas.txt";
+//	static String pathFeedback = "/Users/leozi/git/CodeTogether/Gerenciador_Academico/Gerenciador_Academico/src/feedback.txt";
 
 	// luiz
 	static String pathAlunos = "/home/lua/Documents/GitHub/Gerenciador_Academico/Gerenciador_Academico/src/alunos.txt";
 	static String pathProfessores = "/home/lua/Documents/GitHub/Gerenciador_Academico/Gerenciador_Academico/src/professores.txt";
 	static String pathDisciplinas = "/home/lua/Documents/GitHub/Gerenciador_Academico/Gerenciador_Academico/src/disciplinas.txt";
+	static String pathFeedback = "/home/lua/Documents/GitHub/Gerenciador_Academico/Gerenciador_Academico/src/feedback.txt";
 
 	// alunos
 	public static List<Aluno> getAllAlunos() {
@@ -52,6 +54,26 @@ public class ReadFile {
 		}
 
 		return alunosList;
+	}
+	
+	// feedback
+	public static List<Feedback> getAllFeedbacks() {
+		List<String> linesList;
+		List<Feedback> feedbackList = new ArrayList<>();
+		try (Stream<String> lines = Files.lines(Paths.get(pathFeedback))) {
+			linesList = lines.collect(Collectors.toList());
+
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+		
+		for (String feedback : linesList) {
+			String[] feedbackSplit = feedback.split("::");
+			Feedback a = new Feedback(feedbackSplit[0], feedbackSplit[1], feedbackSplit[2], feedbackSplit[3]);
+			feedbackList.add(a);
+		}
+		
+		return feedbackList;
 	}
 
 	// disciplinas

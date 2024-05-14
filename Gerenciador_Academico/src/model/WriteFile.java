@@ -10,14 +10,13 @@ public class WriteFile {
 //	static String pathAlunos = "/Users/leozi/git/CodeTogether/Gerenciador_Academico/Gerenciador_Academico/src/alunos.txt";
 //	static String pathProfessores = "/Users/leozi/git/CodeTogether/Gerenciador_Academico/Gerenciador_Academico/src/professores.txt";
 //	static String pathDisciplinas = "/Users/leozi/git/CodeTogether/Gerenciador_Academico/Gerenciador_Academico/src/disciplinas.txt";
+//	static String pathFeedback = "/Users/leozi/git/CodeTogether/Gerenciador_Academico/Gerenciador_Academico/src/feedback.txt";
 
 	// luiz
-	 static String pathAlunos =
-	 "/home/lua/Documents/GitHub/Gerenciador_Academico/Gerenciador_Academico/src/alunos.txt";
-	 static String pathProfessores =
-	 "/home/lua/Documents/GitHub/Gerenciador_Academico/Gerenciador_Academico/src/professores.txt";
-	 static String pathDisciplinas =
-	 "/home/lua/Documents/GitHub/Gerenciador_Academico/Gerenciador_Academico/src/disciplinas.txt";
+	 static String pathAlunos = "/home/lua/Documents/GitHub/Gerenciador_Academico/Gerenciador_Academico/src/alunos.txt";
+	 static String pathProfessores = "/home/lua/Documents/GitHub/Gerenciador_Academico/Gerenciador_Academico/src/professores.txt";
+	 static String pathDisciplinas = "/home/lua/Documents/GitHub/Gerenciador_Academico/Gerenciador_Academico/src/disciplinas.txt";
+	static String pathFeedback = "/home/lua/Documents/GitHub/Gerenciador_Academico/Gerenciador_Academico/src/feedback.txt";
 
 	public void writeAluno(Aluno aluno) {
 		var alunos = ReadFile.getAllAlunos();
@@ -105,6 +104,20 @@ public class WriteFile {
 						linha += disciplinaWrite.getDiscentes().get(i) + ",";
 					}
 				}
+				System.out.println(linha);
+				fos.write(linha.getBytes("UTF-8"));
+			}
+
+		} catch (IOException e) {
+
+		}
+	}
+	
+	public static void writeFeedbacks(List<Feedback> feedbacks) {
+		try (FileOutputStream fos = new FileOutputStream(pathFeedback)) {
+			for (Feedback feedbackWrite : feedbacks) {
+				String linha = feedbackWrite.getAluno() + "::" + feedbackWrite.getTitulo() + "::"
+						+ feedbackWrite.getCorpo() + "::" + feedbackWrite.getProfessor() + "\n";
 				System.out.println(linha);
 				fos.write(linha.getBytes("UTF-8"));
 			}

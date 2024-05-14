@@ -11,6 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -66,7 +67,15 @@ public abstract class ConstrutorDeComponentes {
 		JPanel painelBotoes = new JPanel(new GridBagLayout());
 		JButton botaoInscricao = new JButton("Inscrever-se em disciplinas");
 		//JButton botaoHistorico = new JButton("Ver histórico");
+		JButton botaoFeedback = new JButton("Feedback");
 		JButton botaoSair = new JButton("Sair");
+		
+		botaoFeedback.addActionListener(e -> {
+			String titulo = JOptionPane.showInputDialog(null, "Digite o título do feedback: ", "Feedback", JOptionPane.PLAIN_MESSAGE);
+			String corpo = JOptionPane.showInputDialog(null, "Digite o corpo do feedback: ", "Feedback", JOptionPane.PLAIN_MESSAGE);
+			
+			disciplinasDAO.addFeedback(pessoaLogadaNome, titulo, corpo, tabelaMaterias.getValueAt(tabelaMaterias.getSelectedRow(), 1).toString());
+		});
 		
 		botaoInscricao.addActionListener(e -> {
 			frameLogadoAluno.dispose();
@@ -79,6 +88,7 @@ public abstract class ConstrutorDeComponentes {
 		});
 		
 		painelBotoes.add(botaoInscricao, posicionar(0, 2));
+		painelBotoes.add(botaoFeedback, posicionar(1, 2));
 		//painelBotoes.add(botaoHistorico, posicionar(1, 2));
 		painelBotoes.add(botaoSair, posicionar(2, 2));
 		
@@ -100,6 +110,12 @@ public abstract class ConstrutorDeComponentes {
 
 		JButton buttonRegistrarNotas = new JButton("Registrar notas");
 		JButton botaoCronograma = new JButton("Cronograma");
+		JButton botaoFeedbacks = new JButton("Ver feedbacks");
+		
+		botaoFeedbacks.addActionListener(e -> {
+			frameLogadoProfessor.dispose();
+			criarFrameFeedback(pessoaLogadaNome);
+		});
 
 		buttonRegistrarNotas.addActionListener(e -> {
 			criarFrameRegistrarNotas(pessoaLogadaNome);
@@ -109,6 +125,7 @@ public abstract class ConstrutorDeComponentes {
 			frameLogadoProfessor.dispose();
 			criarFrameCronograma(pessoaLogadaNome);
 		});
+		
 		JButton buttonSair = new JButton("Sair");
 		buttonSair.addActionListener(e -> {
 			frameLogadoProfessor.dispose();
@@ -118,8 +135,48 @@ public abstract class ConstrutorDeComponentes {
 		frameLogadoProfessor.add(buttonRegistrarNotas, posicionar(0, 0));
 		frameLogadoProfessor.add(botaoCronograma, posicionar(0, 1));
 		frameLogadoProfessor.add(buttonSair, posicionar(0, 2));
+		frameLogadoProfessor.add(botaoFeedbacks, posicionar(0, 3));
 		frameLogadoProfessor.setVisible(true);
 		return frameLogadoProfessor;
+	}
+
+	private static void criarFrameFeedback(String pessoaLogadaNome) {
+		JFrame frameFeedback = new JFrame("Feedbacks");
+		frameFeedback.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		frameFeedback.setIconImage(img.getImage());
+		frameFeedback.setSize(800, 600);
+		frameFeedback.setLocationRelativeTo(null);
+		frameFeedback.setLayout(new GridBagLayout());
+		
+		JPanel painelFeedback = new JPanel(new GridBagLayout());
+		JLabel labelTabelaFeedback = new JLabel("Feedbacks: ");
+		Object[][] dados = disciplinasDAO.getFeedbacks(pessoaLogadaNome);
+		String[] colunas = {"Aluno", "Feedback"};
+		JTable tabelaFeedback = new JTable(dados, colunas);
+		JScrollPane scrollPane = new JScrollPane(tabelaFeedback);
+		
+		JButton botaoAbrirFeedbacks = new JButton("Detalhar feedback");
+		botaoAbrirFeedbacks.addActionListener(e -> {
+			String corpo = disciplinasDAO.getFeedbackBody(tabelaFeedback.getSelectedRow());
+			corpo = "<html><body><p style='width: 200px;'>" + corpo + "</p></body></html>";
+			JOptionPane.showMessageDialog(null, corpo, "Feedback:", JOptionPane.PLAIN_MESSAGE);
+			
+		});
+		
+		JButton botaoSair = new JButton("Sair");
+		botaoSair.addActionListener(e -> {
+			frameFeedback.dispose();
+			criarFrameLogadoProfessor(pessoaLogadaNome);
+		});
+		
+		painelFeedback.add(labelTabelaFeedback, posicionar(0, 0));
+		painelFeedback.add(scrollPane, posicionar(0, 1));
+		painelFeedback.add(botaoAbrirFeedbacks, posicionar(0, 2));
+		painelFeedback.add(botaoSair, posicionar(0, 3));		
+		
+		frameFeedback.add(painelFeedback);
+		
+		frameFeedback.setVisible(true);
 	}
 
 	private static JFrame criarFrameRegistrarNotas(String pessoaLogadaNome){

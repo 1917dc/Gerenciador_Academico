@@ -5,6 +5,7 @@ import java.util.List;
 
 import model.Aluno;
 import model.Disciplina;
+import model.Feedback;
 import model.Professor;
 import model.ReadFile;
 import model.WriteFile;
@@ -190,5 +191,49 @@ public class DisciplinasDAO {
 
 		
 		WriteFile.writeAluno(alunos);
+	}
+
+	public Object[][] getFeedbacks(String pessoaLogadaNome) {
+		List<Feedback> feedbacks = ReadFile.getAllFeedbacks();
+		List<Aluno> alunos = ReadFile.getAllAlunos();
+		feedbacks.removeIf(feedback -> !feedback.getProfessor().equals(getCpfProfessor(pessoaLogadaNome)));
+		
+		Object[][] dados = new Object[feedbacks.size()][2];
+		
+		for (int i = 0; i < feedbacks.size(); i++) {
+			String alunoNome = "";
+			
+			for(Aluno aluno: alunos) {
+				if (aluno.getCpf().equals(feedbacks.get(i).getAluno())) {
+					alunoNome = aluno.getNome();
+				}
+			}
+			
+			dados[i][0] = alunoNome;
+			dados[i][1] = feedbacks.get(i).getTitulo();
+		}
+		
+		return dados;
+	}
+	
+	public String getFeedbackBody(int i) {
+		List<Feedback> feedbacks = ReadFile.getAllFeedbacks();
+		
+		return feedbacks.get(i).getCorpo();
+	}
+	
+	public void addFeedback(String alunoNome, String titulo, String corpo, String professorNome) {
+		List<Feedback> feedbacks = ReadFile.getAllFeedbacks();
+		List<Aluno> alunos = ReadFile.getAllAlunos();
+		String alunoCpf = "";
+		
+		for (Aluno aluno : alunos) {
+			if (aluno.getNome().equals(alunoNome)) {
+				alunoCpf = aluno.getCpf();
+			}
+		}
+		
+		feedbacks.add(new Feedback(alunoCpf, titulo, corpo, getCpfProfessor(professorNome)));
+		WriteFile.writeFeedbacks(feedbacks);
 	}
 }
