@@ -71,6 +71,7 @@ public class ReadFile {
 			String[] feedbackSplit = feedback.split("::");
 			Feedback a = new Feedback(feedbackSplit[0], feedbackSplit[1], feedbackSplit[2], feedbackSplit[3]);
 			feedbackList.add(a);
+			System.out.println(a);
 		}
 		
 		return feedbackList;

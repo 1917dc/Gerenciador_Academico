@@ -219,7 +219,7 @@ public class DisciplinasDAO {
 	public String getFeedbackBody(int i) {
 		List<Feedback> feedbacks = ReadFile.getAllFeedbacks();
 		
-		return feedbacks.get(i).getCorpo();
+		return feedbacks.get(i+1).getCorpo();
 	}
 	
 	public void addFeedback(String alunoNome, String titulo, String corpo, String professorNome) {
@@ -232,8 +232,9 @@ public class DisciplinasDAO {
 				alunoCpf = aluno.getCpf();
 			}
 		}
-		
-		feedbacks.add(new Feedback(alunoCpf, titulo, corpo, getCpfProfessor(professorNome)));
+
+		var feedback = new Feedback(alunoCpf, titulo, corpo, getCpfProfessor(professorNome));
+		feedbacks.add(feedback);
 		WriteFile.writeFeedbacks(feedbacks);
 	}
 }

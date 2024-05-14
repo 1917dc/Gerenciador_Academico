@@ -1,4 +1,4 @@
-Ana,11122233344,ana123,Engenharia-Matemática=8.5,Geografia=6.0,História=7.2,Física=6.8,Literatura=0.0
+Ana,11122233344,ana123,Engenharia-Matemática=10.0,Geografia=6.0,História=7.2,Física=6.8,Literatura=0.0
 Sérgio,22233344455,sergio456,Arquitetura-Matemática=7.0,História=6.5,Biologia=8.0
 Carlos,33344455566,carlos789,Engenharia-Geografia=7.8,Química=9.2,Física=6.0
 Maria,44455566677,maria012,Arquitetura-Inglês=7.0,Geografia=8.2,Química=6.5

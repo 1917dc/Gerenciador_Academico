@@ -40,7 +40,12 @@ public class Feedback {
 
 	@Override
 	public String toString() {
-		return "Feedback [aluno=" + aluno + ", disciplina=" + professor + ", feedback=" + titulo + "]";
+		return "Feedback{" +
+				"aluno='" + aluno + '\'' +
+				", professor='" + professor + '\'' +
+				", titulo='" + titulo + '\'' +
+				", corpo='" + corpo + '\'' +
+				'}';
 	}
 
 	public String getCorpo() {

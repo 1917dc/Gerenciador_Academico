@@ -1,3 +1,4 @@
 11122233344::teste::teste::13579246810
-11122233344::Olá::TesteTesteTesteTesteTesteTesteTesteTesteTesteTesteTesteTesteTesteTesteTesteTesteTesteTesteTesteTesteTesteTesteTesteTesteTesteTesteTesteTesteTesteTesteTesteTeste::13579246810
-11122233344::Teste::TesE::13579246810
+11122233344::Olá::Olá::12345678910
+11122233344::ola2::ola2::12345678910
+11122233344::tchau::ola3::12345678910
