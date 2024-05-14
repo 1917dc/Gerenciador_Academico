@@ -7,17 +7,17 @@ import java.util.List;
 public class WriteFile {
 
 	// leo
-	static String pathAlunos = "/Users/leozi/git/CodeTogether/Gerenciador_Academico/Gerenciador_Academico/src/alunos.txt";
-	static String pathProfessores = "/Users/leozi/git/CodeTogether/Gerenciador_Academico/Gerenciador_Academico/src/professores.txt";
-	static String pathDisciplinas = "/Users/leozi/git/CodeTogether/Gerenciador_Academico/Gerenciador_Academico/src/disciplinas.txt";
+//	static String pathAlunos = "/Users/leozi/git/CodeTogether/Gerenciador_Academico/Gerenciador_Academico/src/alunos.txt";
+//	static String pathProfessores = "/Users/leozi/git/CodeTogether/Gerenciador_Academico/Gerenciador_Academico/src/professores.txt";
+//	static String pathDisciplinas = "/Users/leozi/git/CodeTogether/Gerenciador_Academico/Gerenciador_Academico/src/disciplinas.txt";
 
 	// luiz
-	// static String pathAlunos =
-	// "/home/lua/Documents/GitHub/Gerenciador_Academico/Gerenciador_Academico/src/alunos.txt";
-	// static String pathProfessores =
-	// "/home/lua/Documents/GitHub/Gerenciador_Academico/Gerenciador_Academico/src/professores.txt";
-	// static String pathDisciplinas =
-	// "/home/lua/Documents/GitHub/Gerenciador_Academico/Gerenciador_Academico/src/disciplinas.txt";
+	 static String pathAlunos =
+	 "/home/lua/Documents/GitHub/Gerenciador_Academico/Gerenciador_Academico/src/alunos.txt";
+	 static String pathProfessores =
+	 "/home/lua/Documents/GitHub/Gerenciador_Academico/Gerenciador_Academico/src/professores.txt";
+	 static String pathDisciplinas =
+	 "/home/lua/Documents/GitHub/Gerenciador_Academico/Gerenciador_Academico/src/disciplinas.txt";
 
 	public void writeAluno(Aluno aluno) {
 		var alunos = ReadFile.getAllAlunos();
